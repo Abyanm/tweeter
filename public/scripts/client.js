@@ -23,27 +23,49 @@ const createTweetElement = function(object) {
     </div>`
 
 }
-const tweetData = {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-    "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-    "created_at": 1461116232227
- }
 
+const renderTweets = function(tweets) {
+  for (const tweetInfo of tweets){
+    // creates the html for each tweet
+    const $tweet = createTweetElement(tweetInfo)
 
+    // adds the tweet-container element to tweets-container
+    $('.tweets-container').append($tweet); 
+  }
+
+}
+
+const loadTweets = function() {
+  $.ajax({
+    type: "GET",
+    url: "/tweets",
+    dataType: "json"
+  })
+  .then(function (data) {
+    console.log('Success: ', data);
+    renderTweets(data)
+  });
+}
 
 // Test / driver code (temporary)
 // console.log($tweet); // to see what it looks like
 // $('#tweets-container').append(`hello`); 
 
 $(document).ready(function() {
-    const $tweet = createTweetElement(tweetData);
-    // Test / driver code (temporary)
-    // console.log($tweet); // to see what it looks like
-    $('.tweets-container').append($tweet); 
+  loadTweets();
+  
+  $("#form").on("submit" ,function(event) {
+    event.preventDefault()
+    console.log( $( this ).serialize() );
+
+    $.ajax({
+      type: "POST",
+    url: "/tweets",
+    data: $( this ).serialize()
+    })
+  });
+
+
+
+
 });
