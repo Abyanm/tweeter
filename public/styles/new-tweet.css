@@ -1,0 +1,68 @@
+textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+.counter {
+    text-align: left;
+    margin-left: 82%;
+}
+.tweet-container{
+    padding-block: 2%;
+    outline: solid 2px black;
+    height: auto;
+    margin: 20px;
+}
+.tweet-container:hover {
+   
+    border:  solid 2px black;
+    height: auto;
+    box-shadow: 4px 4px #35172a;
+   
+}
+.tweet {
+    border-bottom: solid 2px black;
+    margin: 0 10px;
+}
+
+.icon-container {
+    margin-left:750px;
+}
+#flag:hover{
+    color: #35172a;
+}
+#retweet:hover{
+    color: #35172a;
+}
+#heart:hover{
+    color:#35172a ;
+}
+#usert:hover{
+    color:#35172a;
+    align-items: flex-end;
+}
+#username {
+    color:#35172a;
+    margin-left: 78%;
+}
+
+#displayname{
+    color: #35172a;
+
+}
+
+#tweet {
+    border-bottom: solid 3px black;
+    margin: 4px;
+    margin-bottom: 2px;
+    padding: 20px;
+}
+#time{
+    text-align:start;
+}
+
+#icon-container {
+    margin-left: 80%;
+}

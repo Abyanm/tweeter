@@ -1,0 +1,50 @@
+header{
+    height: 400 px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #35172a;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+h2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 115%;
+    text-align: center;
+    color: white;
+    background-color:#35172a ;
+    justify-content: center;
+    align-items: center;
+
+   
+    /* background-color: lightcoral; */
+}
+#navbar{
+    overflow: hidden;
+    background-color: #35172a;
+    position: absolute;
+    width: 100%;
+}
+#Welcome{
+    background-color: #35172a;
+    height: auto;
+    color: white;
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+  }
+  .main {
+    margin-top: 30px; /* Add a top margin to avoid content overlay */
+  }
+
+  #logo {
+      margin-top: 200px;
+  }
