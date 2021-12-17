@@ -56,13 +56,20 @@ $(document).ready(function() {
   
   $("#form").on("submit" ,function(event) {
     event.preventDefault()
-    console.log( $( this ).serialize() );
+    let data = $( this ).serialize()
+    let lengthOfTweet = data.length - 5
+    if(lengthOfTweet == 0 || lengthOfTweet > 140) {
+      return;
+    } else {
+      // send data to localhost:8080/tweets
+      $.ajax({
+        type: "POST",
+      url: "/tweets",
+      data: $( this ).serialize()
+      })
 
-    $.ajax({
-      type: "POST",
-    url: "/tweets",
-    data: $( this ).serialize()
-    })
+    }
+
   });
 
 
