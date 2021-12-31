@@ -59,7 +59,7 @@ nav > div > p > span{
 }
 .nav_new_tweet i{
     margin-top: -1.2rem;
-    color: white;
+    color: red;
     cursor: pointer;
 }
 @keyframes arrowMovement{

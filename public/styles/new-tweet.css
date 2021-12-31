@@ -1,12 +1,14 @@
 textarea {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #35172a;
     width: 100%;
     
 }
 
 .counter {
+    color: #35172a;
+    font-weight: bold;
     text-align: left;
     margin-left: 82%;
 }
@@ -18,12 +20,20 @@ textarea {
     overflow: hidden;
 }
 
+
 .tweet-container:hover {
    
     border:  solid 2px black;
     height: auto;
     box-shadow: 4px 4px #35172a;
    
+}
+main button{
+    background-color:#35172a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 15px;
 }
 .tweet {
     border-bottom: solid 2px black;
@@ -35,7 +45,7 @@ textarea {
 .icon-container {
     margin-left:750px;
 }
-#flag:hover{
+/* #flag:hover{
     color: #35172a;
 }
 #retweet:hover{
@@ -43,8 +53,8 @@ textarea {
 }
 #heart:hover{
     color:#35172a ;
-}
-#usert:hover{
+} */
+/* #usert:hover{
     color:#35172a;
     align-items: flex-end;
 }
@@ -72,7 +82,7 @@ textarea {
 
 #icon-container {
     margin-left: 80%;
-}
+} */
 
 #errormessage {
     color:red;

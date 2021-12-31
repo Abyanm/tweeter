@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweet-component.css" type="text/css" />
 
 
 
@@ -57,51 +58,37 @@
     </div>
   </nav>
 
-  <header>
+  <div class="query">
+
+    <header>
       <img src="/images/profile-hex.png">
-      <!-- <div>
-        <img src="/images/profile-hex.png">
-      </div> -->
-    <br>
-    <div class="avatar_name">
-      <h2><span>Abyan</span> Mohamed</h2>
-    </div>
-  </header>
+      <br>
+      <div class="avatar_name">
+        <h2><span>Abyan</span> Mohamed</h2>
+      </div>
+    </header>
 
-  <div class="row">
-    <div class="item">
-      
-    </div>
-    <div class="item">
-      <main class="container">
-        <section class="new-tweet">
-
-
-          <div id="errormessage">
-            <div style='display:none;' id='error-zero'> This tweet is empty. Please add text. </div>
-            <div style='display:none;' id='error-long'>Tweet is longer than 140 characters. </div>
-          </div>
-          <form id="form" action="/tweets" method="post">
-            <label for="tweet-text">What are you humming about?</label>
-            <div>
-              <textarea name="text" id="tweet-text"></textarea>
-            </div>
-            <div>
-              <button class="btn" type="submit">Tweet</button>
-              <output name="counter" class="counter" for="tweet-text">140</output>
-
-            </div>
-          </form>
-        </section>
-        <div class="tweets-container">
-          
+    <main class="container">
+      <section class="new-tweet">
+        <div id="errormessage">
+          <div style='display:none;' id='error-zero'> This tweet is empty. Please add text. </div>
+          <div style='display:none;' id='error-long'>Tweet is longer than 140 characters. </div>
         </div>
-
-      </main>
-    </div>
+        <form id="form" action="/tweets" method="post">
+          <label for="tweet-text">What are you humming about?</label>
+          <div>
+            <textarea name="text" id="tweet-text"></textarea>
+          </div>
+          <div>
+            <button class="btn" type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+      <section class="tweets-container all-tweet-section">
+      </section>
+    </main>
   </div>
-  <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    </p> -->
 </body>
 
 </html>
