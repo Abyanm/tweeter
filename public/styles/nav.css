@@ -1,9 +1,8 @@
-nav {
+/* nav {
     background-color: white;
     height: 150px;
     width: 100%;
     padding-top: 75px;
-    /* padding: 1.5em; */
     color: #35172a;
     padding-left: 20px;
 }
@@ -17,4 +16,62 @@ img{
 }
 nav {
     font-family: 'Bungee', cursive;
+}
+.nav_new_tweet {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+
+} */
+nav{
+    height:120px;
+    width:100%;
+    background-color: #35172a;
+    color: white;
+    /* padding: t r b l ; */
+    /* padding: t-b r-l; */
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 5;
+    position: fixed;
+    top:0;
+}
+nav > span{
+    font-family: 'Bungee';
+    font-size: 2.5rem;
+}
+nav > div > p > span{
+    font-weight: bold;
+}
+.nav_new_tweet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.nav_new_tweet p{
+    cursor: pointer;
+}
+.nav_new_tweet i{
+    margin-top: -1.2rem;
+    color: white;
+    cursor: pointer;
+}
+@keyframes arrowMovement{
+    from{
+        transform: translate3d(0, -5px, 0);
+    }
+    to{
+        transform: translate3d(0, 5px, 0);
+    }
+}
+.nav_new_tweet i:hover{
+    animation: arrowMovement 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
 }

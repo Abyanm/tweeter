@@ -1,92 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
 
-    <!-- Meta Information -->
-    <title>Tweeter - Home Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@1,300;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- External CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" type="text/css" />
-    
-    <!-- App CSS -->
-    
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-   
-  
+<head>
 
-    <!-- External JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Meta Information -->
+  <title>Tweeter - Home Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@1,300;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
 
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
-    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+  <!-- App CSS -->
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <div id="navbar" class="navbar">
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/client.js"></script>
+  <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- <div id="navbar" class="navbar">
       <a href="#home">Home</a>
       <a href="#news">Friends</a>
       <a href="#contact">Friend Requests</a>
+    </div> -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+</head>
+
+<body>
+  <!-- Top nav bar (fixed) -->
+  <span class="back-to-top"><i class="fas fa-angle-double-up"></i></span>
+
+  <nav>
+    <span>Tweeter</span>
+    <div class="nav_new_tweet">
+      <p><span> Write</span> a new tweet</p>
+      <i class="fas fa-angle-double-down form-toggle"></i>
     </div>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  </nav>
 
-    
-  </head>
+  <header>
+      <img src="/images/profile-hex.png">
+      <!-- <div>
+        <img src="/images/profile-hex.png">
+      </div> -->
+    <br>
+    <div class="avatar_name">
+      <h2><span>Abyan</span> Mohamed</h2>
+    </div>
+  </header>
 
-  <body>
-    <!-- Top nav bar (fixed) -->
-    <nav>
-      <span >What your friends have been up to </span>
-     
-    </nav>
-    <h2>Welcome to Tweeter</h2>
-    <div class="row">
-      <div class="item" >
-        <header>
-          <div>
-              <img src="/images/profile-hex.png"> 
-          </div>
-          <br>
-          <div>
-              <h2>Abyan Mohamed    </h2>
-          </div>
-      </header>
-      </div>
-      <div class="item" >
-        <main class="container">
-          <section class="new-tweet">
+  <div class="row">
+    <div class="item">
       
-        
-            <div id="errormessage"> 
-              <div style='display:none;' id='error-zero'> This tweet is empty. Please add text. </div>
-              <div style='display:none;' id='error-long'>Tweet is longer than 140 characters. </div>
+    </div>
+    <div class="item">
+      <main class="container">
+        <section class="new-tweet">
+
+
+          <div id="errormessage">
+            <div style='display:none;' id='error-zero'> This tweet is empty. Please add text. </div>
+            <div style='display:none;' id='error-long'>Tweet is longer than 140 characters. </div>
+          </div>
+          <form id="form" action="/tweets" method="post">
+            <label for="tweet-text">What are you humming about?</label>
+            <div>
+              <textarea name="text" id="tweet-text"></textarea>
             </div>
-            <form id="form" action="/tweets" method="post">
-              <label for="tweet-text">What are you humming about?</label>
-              <div>
-                <textarea name="text" id="tweet-text"></textarea>
-              </div>
-              <div>
-                <button class="btn" type="submit">Tweet</button>
-                <output name="counter" class="counter" for="tweet-text">140</output>
-      
-              </div>
-            </form>
-          </section>
-          <div class="tweets-container">
-            
-          </div>
-      
-        </main>
-      </div>
-</div>
-    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            <div>
+              <button class="btn" type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+
+            </div>
+          </form>
+        </section>
+        <div class="tweets-container">
+          
+        </div>
+
+      </main>
+    </div>
+  </div>
+  <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
     </p> -->
-  </body>
-  
+</body>
+
 </html>

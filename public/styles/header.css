@@ -1,6 +1,9 @@
 header{
-    height: 400 px;
+    height:400px;
     width: 100%;
+    margin:120px 0 0 0;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #35172a;
@@ -45,7 +48,12 @@ h2 {
     margin-top: 30px; /* Add a top margin to avoid content overlay */
     color: #35172a;
   }
-
+  .avatar_name h2{
+      font-weight: 300;
+  }
+  .avatar_name h2 span{
+      font-weight: bold;
+  }
   #logo {
       margin-top: 200px;
   }
