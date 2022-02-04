@@ -3,184 +3,130 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-const escape = function (str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
 
-const createTweetElement = function (object) {
-
-  return ` 
-    <article class="tweet-component">
-        <!-- image-username-refkey -->
-        <div class="image-username-refkey">
-          <div class="image-username">
-            <img src=${object.user.avatars} alt="" />
-            <span>${escape(object.user.name)}</span>
-          </div>
-          <div>${escape(object.user.handle)}</div>
-          </div>
-        <!-- tweet contect -->
-        <div class="tweet-content">
-        ${escape(object.content.text)}
-        </div>
-        <!-- time and reactions icons -->
-        <div class="time-reactions">
-          <p>${escape(timeago.format(object.created_at))}</p>
-          <div class="icons">
-            <i class="fas fa-flag"></i>
-            <i class="fas fa-retweet"></i>
-            <i class="fas fa-heart"></i>
-          </div>
-        </div>
-      </article>
-    <!-- <div class="tweet-container"> 
-        <div>
-            <i id="usert"class="fas fa-user-circle"></i>
-             <a class= "displayname">${escape(object.user.name)}</a>
-            <a id="username">${escape(object.user.handle)}</a>
-        </div>
-        <div class="tweet"> ${escape(object.content.text)}
-        </div>
-        <a class="time">${escape(timeago.format(object.created_at))}</a>
-        <a class="icon-container">
-         <i id="flag" class="far fa-flag"></i>
-        <i id="retweet"class="fas fa-retweet"></i>
-        <i id="heart"class="far fa-heart"></i>
-        </a>
-    </div> -->`
-
-}
-
-const renderTweets = function (tweets) {
-  // for (let i = tweets.length - 1; i > 0; i--) {
-  //   // creates the html for each tweet
-  //   const $tweet = createTweetElement(tweets[i])
-
-  //   // adds the tweet-container element to tweets-container
-  //   $('.tweets-container').append($tweet);
-  // }
-tweets.forEach(tweet => {
-  let $tweet = createTweetElement(tweet)
-  $(".tweets-container").prepend($tweet)
-});
-}
-
-const loadTweets = function () {
-  $.ajax({
-    type: "GET",
-    url: "/tweets",
-    dataType: "json"
-  })
-    .then(function (data) {
-      // console.log('Success: ', data);
-      renderTweets(data)
-    });
-}
-const toggleBackToTopBtn = () => {
-  if ($(window).scrollTop() > 0) {
-    $(".back-to-top")
-      .show()
-      .fadeIn("slow");
-  } else {
-    $(".back-to-top")
-      .hide()
-      .fadeOut("slow");
-  }
-};
-const toggleTweetForm = () => {
-  var $section = $("section.new-tweet");
-  if ($section.is(":visible")) {
-    $section.slideUp("fast");
-  } else {
-    $section.slideDown("fast");
-    $section.find("textarea").focus();
-  }
-};
-
-// Test / driver code (temporary)
-// console.log($tweet); // to see what it looks like
-// $('#tweets-container').append(`hello`); 
 
 $(document).ready(function () {
-  $(".new-tweet").hide()
-  loadTweets();
-  $("#form").on("submit", function (event) {
-    event.preventDefault()
-    // console.log("")
-    let data = $(this).serialize()
-    let lengthOfTweet = data.length - 5
-    // console.log(lengthOfTweet) 
-    if (lengthOfTweet == 0) {
-      $("#error-zero").slideDown(1500)
-      setTimeout(() => {
-        $("#error-zero").slideUp(1000)
-      }, 4000)
-      return 
-      // $("#errormessage").append("<div class='error'> This tweet is empty. Please add text. </div>")
-    } else if (lengthOfTweet > 140) {
-      $("#error-long").slideDown(1500) 
-      setTimeout(() => {
-        $("#error-long").slideUp(1000)
-      }, 4000)
-      return
+  const data = [
+    {
+      "user": {
+        "name": "Newton",
+        "avatars": "https://i.imgur.com/73hZDYK.png"
+        ,
+        "handle": "@SirIsaac"
+      },
+      "content": {
+        "text": "If I have seen further it is by standing on the shoulders of giants"
+      },
+      "created_at": 1461116232227
+    },
+    {
+      "user": {
+        "name": "Descartes",
+        "avatars": "https://i.imgur.com/nlhLi3I.png",
+        "handle": "@rd"
+      },
+      "content": {
+        "text": "Je pense , donc je suis"
+      },
+      "created_at": 1461113959088
     }
-    $.ajax({
-      method: "post",
-      url: "/tweets",
-      type: "application/json",
-      data: data,
-      success: function () {
-        $("textarea").val("")
-        $.get("/tweets", function (data) {
-          console.log(data)
-          $("output").text(140)
-          const newtweet = [data.slice(-1).pop()]
-          renderTweets(newtweet)
-        })
+  ]
 
+  const renderTweets = function (data) {
+    for (let tweet of data) {
+      $('#tweets-container').prepend(createTweetElement(tweet));
+    }
+  };
+
+  const createTweetElement = function (tweet) {
+    const time = timeago.format(tweet.created_at);
+    console.log(time)
+    // destructing object 
+    const { user, content, created_at } = tweet
+    let $tweet =
+      $(` <article class="article">
+<header class="tweetHeader">
+  
+  <div class="tweetTitle">
+  <div class="avatar">
+    <img src="${user.avatars}"> 
+    <div >${user.name}</div>
+  </div>
+    ${user.handle}
+  </div>
+     <div>${$("<p>").text(content.text).html()}</div>
+</header>
+  <footer class="tweetFooter">
+    <div>
+    ${time}
+    </div>
+    
+    <div class="icons">
+      <i class="fas fa-flag" style="font-size:15px"></i>
+      <i class="fas fa-retweet" style="font-size:15px"></i>
+      <i class="fas fa-heart" style="font-size:15px"></i>
+    </div>
+    
+  </footer>
+</article>`)
+    // need to return variable 
+    return $tweet
+  }
+  renderTweets(data);
+
+  const loadTweets = function () {
+    $('#tweets-container').empty();
+    $.ajax({
+      url: "/tweets/",
+      method: 'GET',
+      dataType: 'json', // added data type
+      success: function (tweets) {
+        console.log(tweets);
+        renderTweets(tweets)
+      },
+      error: (err) => {
+        console.log(err)
       }
+    });
+  }
+
+  //prevents the default form submission behaviour of sending the post request and reloading the page
+  $(".formText").submit(function (event) {
+    event.preventDefault();
+
+    $('.error-message').slideUp(400).text('')
+
+    let input = $("#tweet-text").val()
+    console.log("input:", input)
+
+    if (!input.length) {
+      $('.counter').text(140)
+      return $('.error-message').text('Please enter a valid tweet').slideDown()
+    } else if (input.length > 140) {
+
+      return $('.error-message').text('Your Tweet exceeds the maximum 140 characters').slideDown()
+    }
+
+    $.ajax({
+      url: "/tweets/",
+      method: 'POST',
+      type: "application/json",
+      //creates a text string in standard URL-encoded notation
+      data: $(this).serialize(),
+      success: function (data) {
+        $("textarea").val("");
+        $.get("http://localhost:8080/tweets/", data => {
+          const newTweet = [data.slice(-1).pop()];
+          renderTweets(newTweet);
+        });
+        console.log("Success")
+      },
+      error: (err) => {
+        console.log(err)
+      }
+
     })
   })
-  $(".back-to-top").hide();
-  // call toggleBackTpTopBtn on page scroll
-  $(window).scroll(toggleBackToTopBtn);
-  // clicking on back to top
-  $(".back-to-top").on("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-    toggleBackToTopBtn();
-  });
-  $(".form-toggle").on("click", toggleTweetForm) 
+  loadTweets()
+})
 
-  // $("#form").on("submit" ,function(event) {
-  //   event.preventDefault()
-  //   let data = $( this ).serialize()
-  //   let lengthOfTweet = data.length - 5
-  //   console.log(lengthOfTweet)
-  //   if(lengthOfTweet == 0 ) {
-  //     $("#error-zero").slideDown(1500)
-  //     setTimeout(()=>{
-  //       $("#error-zero").slideUp(1000)
-  //     },4000)
-  //     // $("#errormessage").append("<div class='error'> This tweet is empty. Please add text. </div>")
-  //   } else if (lengthOfTweet > 140) {
-  //     $("#error-long").slideDown(1500)
-  //     setTimeout(()=>{
-  //       $("#error-long").slideUp(1000)
-  //     },4000)
-  //   } else {
-  //     // send data to localhost:8080/tweets
-  //     $.ajax({
-  //       type: "POST",
-  //     url: "/tweets",
-  //     data: $( this ).serialize()
-  //     })
-  //     location.reload()
-  //   }
-  // });
-
-});

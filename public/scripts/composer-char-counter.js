@@ -1,19 +1,25 @@
+let max = 140
 $(document).ready(function() {
-    // --- our code goes here ---
-    
-    $("#tweet-text").on('keyup', function() {
-        let textarea = $("#tweet-text").val()
-        let textareaLength = textarea.length
+  $('form').find('textarea').keyup(function () {
+    // returns array of numbers
+    let count = $(this).val().length
+    // subtracting the two values
+    let charsLeft = max - count
 
-        let charactersLeft = 140 - textareaLength
+    if (charsLeft < 0){
+      // adds neg if value is less than 0
+      ["-",count].join("")
+      // adds red colour to vlaue if neg
+      $("output").addClass("negNum")
+      $("output").text(charsLeft)
 
-        let counter = $(".counter").val(charactersLeft)
-
-        if(charactersLeft < 0) {
-          //change colour to red
-          $(".counter").css("color", "red");
-        }
-      });
-      
-  });
+      // 
+    } else {
+      // removes class if value is positive
+      $("output").removeClass("negNum")
+      $("output").text(charsLeft)
+    }
   
+  });
+
+});

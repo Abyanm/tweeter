@@ -1,77 +1,38 @@
-/* nav {
-    background-color: white;
-    height: 150px;
-    width: 100%;
-    padding-top: 75px;
-    color: #35172a;
-    padding-left: 20px;
-}
-img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.nav {
+    background-color: #4056A1;
+    padding-top: 1em;
     height: 120px;
-    width: 120px;
-}
-nav {
-    font-family: 'Bungee', cursive;
-}
-.nav_new_tweet {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    position: relative;
-
-} */
-nav{
-    height:120px;
-    width:100%;
-    background-color: #35172a;
-    color: white;
-    /* padding: t r b l ; */
-    /* padding: t-b r-l; */
-    padding: 0 1.5rem;
+    width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: space-between;
-    z-index: 5;
-    position: fixed;
-    top:0;
-}
-nav > span{
-    font-family: 'Bungee';
-    font-size: 2.5rem;
-}
-nav > div > p > span{
-    font-weight: bold;
-}
-.nav_new_tweet{
-    display: flex;
+    position: absolute;
+    z-index: 20;
+    position: fixed; /* Sticky/fixed navbar */
+    top: 0; /* At the top */
+    }
+    
+    .title1{
+      margin-left: 1.5em;
+      color: #FFFFFF;
+      font-size: 50px;
+      font-family: 'Bungee', cursive;
+      
+    }
+    
+    .title2 {
+      margin-bottom: 1.5em;
+      margin-right: 1.5em;
+      font-size: 20px;
+      font-family: sans-serif;
+      color: #FFFFFF;
+    }
+    
+    .title3 {
+      display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    position: relative;
-}
-.nav_new_tweet p{
-    cursor: pointer;
-}
-.nav_new_tweet i{
-    margin-top: -1.2rem;
-    color: red;
-    cursor: pointer;
-}
-@keyframes arrowMovement{
-    from{
-        transform: translate3d(0, -5px, 0);
+    align-items: center;
     }
-    to{
-        transform: translate3d(0, 5px, 0);
-    }
-}
-.nav_new_tweet i:hover{
-    animation: arrowMovement 0.5s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-}
+    
+    

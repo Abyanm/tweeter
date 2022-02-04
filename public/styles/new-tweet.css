@@ -1,90 +1,49 @@
-textarea {
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid #35172a;
-    width: 100%;
-    
-}
-
-.counter {
-    color: #35172a;
-    font-weight: bold;
-    text-align: left;
-    margin-left: 82%;
-}
-.tweet-container{
-    padding-block: 2%;
-    outline: solid 2px black;
-    height: auto;
-    margin: 20px;
-    overflow: hidden;
-}
-
-
-.tweet-container:hover {
-   
-    border:  solid 2px black;
-    height: auto;
-    box-shadow: 4px 4px #35172a;
-   
-}
-main button{
-    background-color:#35172a;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 5px 15px;
-}
-.tweet {
-    border-bottom: solid 2px black;
-    margin: 0 10px;
-    overflow: auto;
-    /* display: inline; */
-}
-
-.icon-container {
-    margin-left:750px;
-}
-/* #flag:hover{
-    color: #35172a;
-}
-#retweet:hover{
-    color: #35172a;
-}
-#heart:hover{
-    color:#35172a ;
-} */
-/* #usert:hover{
-    color:#35172a;
+.button {
+    background-color: #4056A1;
+    font-size: 25px;
+    color: #FFFFFF;
+    font-family: 'Bungee', cursive;
+  }
+  
+  .bttnandcutn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-end;
-}
-#username {
-    color:#35172a;
-    margin-left: 78%;
-    width: fit-content;
-
-}
-
-#displayname{
-    color: #35172a;
-
-}
-
-#tweet {
-    border-bottom: solid 3px black;
-    margin: 4px;
-    margin-bottom: 2px;
-    padding: 20px;
-}
-#time{
-    text-align:start;
-}
-
-#icon-container {
-    margin-left: 80%;
-} */
-
-#errormessage {
-    color:red;
-    content: h;
-}
+  }
+  .avatar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+  }
+  
+  .counter{
+    background: transparent;
+    font-size: 25px;
+    font-family: 'Bungee', cursive;
+  }
+  
+  .textBox{
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    margin-bottom: 10px;
+    align-items: center;
+    border-bottom: 3px solid black;
+    
+    
+  }
+  .error-message {
+    display:none;
+    background-color: #fce4e4;
+    border: 1px solid #fcc2c3;
+    float: left;
+    padding: 20px 30px;
+  } 
+  
+  /* used to make counter  values red when - */
+  .negNum{
+    color: red;
+  }
