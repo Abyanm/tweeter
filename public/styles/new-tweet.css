@@ -1,49 +1,53 @@
-.button {
-    background-color: #4056A1;
-    font-size: 25px;
-    color: #FFFFFF;
-    font-family: 'Bungee', cursive;
-  }
-  
-  .bttnandcutn{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .avatar{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    
-  }
-  
-  .counter{
-    background: transparent;
-    font-size: 25px;
-    font-family: 'Bungee', cursive;
-  }
-  
-  .textBox{
-    width: 100%;
-    padding: 0;
-    border: none;
-    background: none;
-    margin-bottom: 10px;
-    align-items: center;
-    border-bottom: 3px solid black;
-    
-    
-  }
-  .error-message {
-    display:none;
-    background-color: #fce4e4;
-    border: 1px solid #fcc2c3;
-    float: left;
-    padding: 20px 30px;
-  } 
-  
-  /* used to make counter  values red when - */
-  .negNum{
-    color: red;
-  }
+.new-tweet-section {
+  top: 0px;
+  width: 90%;
+}
+
+.compose-tweet {
+  display: flex;
+  justify-content: center;
+}
+
+#tweetText {
+  width: 100%;
+  border: none;
+  background-color: #f4f1ec;
+  border-bottom: 2px solid black;
+}
+.tweet-button-counter {
+  font-family: 'Bungee', cursive;
+  display: flex;
+  justify-content: space-between;
+}
+#tweet-button {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.15em;
+}
+
+.tweet-button:hover {
+  box-shadow: 2px 2px 0 1px lightsteelblue;
+}
+
+.invalid-tweet {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggled-invalid-tweet {
+  background-color: #4056A1;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: thin solid darkblue;
+  border-radius: 10px;
+  margin-bottom: 2em;
+  padding: 0.8em;
+  height: 2em;
+  box-shadow: 3px 5px 0 0.5px darkblue;
+}
