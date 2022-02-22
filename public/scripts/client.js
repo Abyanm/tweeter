@@ -2,131 +2,117 @@
  * Client-side JS logic goes here
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+**/
 
+$(document).ready(function() {
+  const createTweetElement = function(tweetObject) {
+    const timePosted = timeago.format(tweetObject.created_at);
+    const markup = `
+      <article>
+        <section class="tweet-header">
+          <div class="tweet-avatar">
+            <img src="${tweetObject.user.avatars}">
+            <span>&nbsp&nbsp${tweetObject.user.name}</span>
+          </div>
+          <span class="tweet-handle">${tweetObject.user.handle}</span>
+        </section>
+        <br>
+        <div class="posted-tweet">
+        ${$(`<p class="tweeted-text">`).text(tweetObject.content.text).html()}
+        </div>
+        <footer class="tweet-footer">
+          <div class="tweet-days-ago">
+            <i>${timePosted}</i>
+          </div>
+          <div class="tweet-icons">
+            <i class="far fa-flag">&nbsp &nbsp</i>
+            <i class="fas fa-heart">&nbsp &nbsp</i> 
+            <i class="fas fa-retweet"></i>
+          </div>
+        </footer>
+      </article>
+      `;
+    return markup;
+  };
 
-$(document).ready(function () {
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png"
-        ,
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    }
-  ]
-
-  const renderTweets = function (data) {
-    for (let tweet of data) {
-      $('#tweets-container').prepend(createTweetElement(tweet));
+  const renderMarkup = function(tweetArr) {
+    for (let tweetObject of tweetArr) {
+      // Create HTML element
+      const markup = createTweetElement(tweetObject);
+      // Append item to container, newest to oldest
+      $('#tweets-container').prepend(markup);
     }
   };
 
-  const createTweetElement = function (tweet) {
-    const time = timeago.format(tweet.created_at);
-    console.log(time)
-    // destructing object 
-    const { user, content, created_at } = tweet
-    let $tweet =
-      $(` <article class="article">
-<header class="tweetHeader">
-  
-  <div class="tweetTitle">
-  <div class="avatar">
-    <img src="${user.avatars}"> 
-    <div >${user.name}</div>
-  </div>
-    ${user.handle}
-  </div>
-     <div>${$("<p>").text(content.text).html()}</div>
-</header>
-  <footer class="tweetFooter">
-    <div>
-    ${time}
-    </div>
-    
-    <div class="icons">
-      <i class="fas fa-flag" style="font-size:15px"></i>
-      <i class="fas fa-retweet" style="font-size:15px"></i>
-      <i class="fas fa-heart" style="font-size:15px"></i>
-    </div>
-    
-  </footer>
-</article>`)
-    // need to return variable 
-    return $tweet
-  }
-  renderTweets(data);
-
-  const loadTweets = function () {
-    $('#tweets-container').empty();
+  const getTweets = function() {
+    // Get request - old tweets
     $.ajax({
-      url: "/tweets/",
-      method: 'GET',
-      dataType: 'json', // added data type
-      success: function (tweets) {
-        console.log(tweets);
-        renderTweets(tweets)
-      },
-      error: (err) => {
-        console.log(err)
-      }
-    });
-  }
-
-  //prevents the default form submission behaviour of sending the post request and reloading the page
-  $(".formText").submit(function (event) {
-    event.preventDefault();
-
-    $('.error-message').slideUp(400).text('')
-
-    let input = $("#tweet-text").val()
-    console.log("input:", input)
-
-    if (!input.length) {
-      $('.counter').text(140)
-      return $('.error-message').text('Please enter a valid tweet').slideDown()
-    } else if (input.length > 140) {
-
-      return $('.error-message').text('Your Tweet exceeds the maximum 140 characters').slideDown()
-    }
-
-    $.ajax({
-      url: "/tweets/",
-      method: 'POST',
-      type: "application/json",
-      //creates a text string in standard URL-encoded notation
-      data: $(this).serialize(),
-      success: function (data) {
-        $("textarea").val("");
-        $.get("http://localhost:8080/tweets/", data => {
-          const newTweet = [data.slice(-1).pop()];
-          renderTweets(newTweet);
-        });
-        console.log("Success")
-      },
-      error: (err) => {
-        console.log(err)
-      }
-
+      url: `/tweets/`,
+      method: 'GET'
     })
-  })
-  loadTweets()
-})
+      .done(tweetArr => {
+        renderMarkup(tweetArr);
+      })
+      .fail(err => {
+        console.log(`ERROR: ${err.message}`);
+      })
+      .always(()=> {
+        console.log('Request to tweet object has been executed');
+      });
+  };
 
+  const errorBanner = function(err) {
+    if (!$('.invalid-tweet').hasClass("toggled-invalid-tweet")) {
+      $('.invalid-tweet').addClass('toggled-invalid-tweet');
+    }
+    $('.invalid-tweet')
+      .text(`Error: ${err}`)
+      .slideDown(250, function() {
+        setTimeout(function() {
+          $('.toggled-invalid-tweet').slideUp(250);
+        }, 3500);
+      });
+  };
+
+  $('.new-tweet-form').on('submit', function(event) {
+    event.preventDefault();
+    console.log('Submit is being triggered');
+
+    // Post request - new tweets
+    const inputBox = $(this).children('#tweetText');
+    const tweetText = inputBox.val();
+    console.log(`Tweet: ${tweetText}`);
+
+    if (tweetText.length > 140) {
+      console.log('REDUCE LENGTH OF YOUR TWEET');
+      let err = `Reduce the length of your tweet`;
+      return errorBanner(err);
+    } else if (tweetText.length === 0) {
+      console.log('CANNOT POST AN EMPTY TWEET');
+      let err = `Cannot post an empty tweet`;
+      return errorBanner(err);
+    } else {
+      // post to /tweets
+      $.ajax({
+        url: `/tweets/`,
+        method: 'POST',
+        data: $(this).serialize()
+      }).then(function() {
+        $('#tweetText').val("");
+        $.get('/tweets/', (data) => {
+          const latestTweet = data.slice(-1).pop();
+          const latestTweetObj = createTweetElement(latestTweet);
+          $('#tweets-container').prepend(latestTweetObj);
+        });
+      })
+        .fail(err => {
+          console.log(`ERROR: ${err.message}`);
+        })
+        .always(()=> {
+          $('#counter').val(140);
+          console.log('Posting tweet object has been executed, and counter reset');
+        });
+    }
+  });
+  getTweets();
+});
